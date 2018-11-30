@@ -42,7 +42,7 @@ public class BookDao {
     }
 
     public List<Book> allByAuthor(String author) throws SQLException {
-        final String query = "select * from books where author=?";
+        final String query = "select * from books where author = ?";
         PreparedStatement select = connection.prepareStatement(query);
         select.setString(1, author);
         ResultSet resultSet = select.executeQuery();
@@ -55,6 +55,7 @@ public class BookDao {
             bk.setTitle(resultSet.getString("title"));
             bk.setYear(resultSet.getInt("year"));
             bk.setIsbn(resultSet.getInt("isbn"));
+            result.add(bk);
         }
         return result;
     }
